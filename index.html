@@ -1,14 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/resolve-kitchen-app/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>resolve-kitchen-app</title>
-    <script type="module" crossorigin src="/resolve-kitchen-app/assets/index-dFXIqTcv.js"></script>
-    <link rel="stylesheet" crossorigin href="/resolve-kitchen-app/assets/index-C3CDt4YP.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/resolve-kitchen-app/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resolve Kitchen</title>
+  <script>
+    // GitHub Pages SPA redirect handler
+    (function () {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect != location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
+  <script type="module" crossorigin src="/resolve-kitchen-app/assets/index-NxshQ5Ws.js"></script>
+  <link rel="stylesheet" crossorigin href="/resolve-kitchen-app/assets/index-D-DFlJPK.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>
