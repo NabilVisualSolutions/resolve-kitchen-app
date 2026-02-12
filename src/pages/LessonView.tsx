@@ -2,20 +2,13 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import { ArrowLeft, ArrowUp, ArrowDown, FileText } from 'lucide-react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
 import styles from './LessonView.module.css';
-
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const LessonView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { lessons, completeLesson } = useUser();
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [numPages, setNumPages] = useState<number | null>(null);
 
     const lesson = lessons.find(l => l.id === Number(id));
 
@@ -52,17 +45,10 @@ const LessonView = () => {
 
     const showLessonImage = isFirstSlide && lesson.image;
 
-    // Use the PDF URL - for GitHub Pages with HashRouter, use relative path from base
-    const pdfUrl = lesson.pdfUrl || `${import.meta.env.BASE_URL}DaVinci-Resolve-20_Beginners-Guide.pdf`;
-
-    // Map slide number to PDF page - use pdfPages array if available, otherwise increment
+    // Get the PDF page number for this slide
     const pdfPageNumber = lesson.pdfPages && lesson.pdfPages[currentSlide]
         ? lesson.pdfPages[currentSlide]
-        : Math.min(currentSlide + 1, numPages || 1);
-
-    const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-        setNumPages(numPages);
-    };
+        : currentSlide + 1;
 
     return (
         <div className={styles.container}>
@@ -78,45 +64,18 @@ const LessonView = () => {
             <div className={styles.slideContainer}>
                 <div className={styles.slideContent}>
 
-                    {/* Visual Area: Either Lesson Image (1st slide) or PDF View */}
+                    {/* Visual Area: Either Lesson Image (1st slide) or PDF Reference */}
                     {showLessonImage ? (
                         <img src={lesson.image} alt={lesson.title} className={styles.lessonImage} />
                     ) : (
-                        <div className={styles.pdfFrame}>
-                            {/* Display PDF using react-pdf */}
-                            {pdfUrl ? (
-                                <Document
-                                    file={pdfUrl}
-                                    onLoadSuccess={onDocumentLoadSuccess}
-                                    loading={
-                                        <div className={styles.pdfPlaceholder}>
-                                            <FileText size={48} className={styles.pdfIcon} />
-                                            <h3>Loading PDF...</h3>
-                                        </div>
-                                    }
-                                    error={
-                                        <div className={styles.pdfPlaceholder}>
-                                            <FileText size={48} className={styles.pdfIcon} />
-                                            <h3>Failed to load PDF</h3>
-                                            <p>Please refresh the page</p>
-                                        </div>
-                                    }
-                                    className={styles.pdfDocument}
-                                >
-                                    <Page
-                                        pageNumber={pdfPageNumber}
-                                        width={750}
-                                        renderTextLayer={true}
-                                        renderAnnotationLayer={true}
-                                    />
-                                </Document>
-                            ) : (
-                                <div className={styles.pdfPlaceholder}>
-                                    <FileText size={48} className={styles.pdfIcon} />
-                                    <h3>DaVinci Resolve PDF Guide</h3>
-                                    <p>No PDF available</p>
-                                </div>
-                            )}
+                        <div className={styles.pdfReference}>
+                            <FileText size={64} className={styles.pdfIcon} />
+                            <h3>📖 DaVinci Resolve Beginner's Guide</h3>
+                            <div className={styles.pageReference}>
+                                <p className={styles.referenceText}>For more details, see:</p>
+                                <p className={styles.pageNumber}>Page {pdfPageNumber}</p>
+                            </div>
+                            <p className={styles.hint}>Open the PDF guide to follow along</p>
                         </div>
                     )}
 
@@ -135,7 +94,6 @@ const LessonView = () => {
 
                         <span className={styles.slideCounter}>
                             {currentSlide + 1} / {finalSlides.length}
-                            {numPages && !showLessonImage && ` (PDF: ${pdfPageNumber}/${numPages})`}
                         </span>
 
                         <button
