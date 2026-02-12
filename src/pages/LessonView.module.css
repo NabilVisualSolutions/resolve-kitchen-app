@@ -1,0 +1,189 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    gap: 1rem;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.backBtn:hover {
+    background-color: var(--border-color);
+}
+
+.progressBar {
+    flex: 1;
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: #ff8c00;
+    /* DaVinci Orange */
+    transition: width 0.3s ease;
+}
+
+.slideContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-y: auto;
+    position: relative;
+}
+
+.slideContent {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background-color: var(--bg-secondary);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: 500px;
+}
+
+.lessonImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pdfFrame {
+    width: 100%;
+    height: 350px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    position: relative;
+}
+
+.pdfPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+    background-color: #f8fafc;
+}
+
+.pdfIcon {
+    margin-bottom: 1rem;
+    opacity: 0.6;
+    color: #ff8c00;
+}
+
+.markdownText {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+}
+
+.markdownText h1,
+.markdownText h2,
+.markdownText h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #ff8c00;
+    font-weight: 700;
+}
+
+.markdownText ul,
+.markdownText ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.navBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.navBtn:hover:not(:disabled) {
+    background-color: var(--border-color);
+}
+
+.navBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: transparent;
+}
+
+.navBtnPrimary {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+}
+
+.navBtnPrimary:hover:not(:disabled) {
+    background-color: #e07b00;
+}
+
+.slideCounter {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+    .pdfPlaceholder {
+        background-color: #1e293b;
+        color: #94a3b8;
+    }
+}

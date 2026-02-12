@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.kitchen {
+    color: var(--accent-primary);
+}
+
+.main {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: calc(var(--bottom-nav-height) + 20px);
+    /* Add padding for bottom nav */
+    position: relative;
+}
+
+.fullHeight {
+    padding-bottom: 0;
+    height: 100%;
+}
+
+.bottomNav {
+    height: var(--bottom-nav-height);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.5;
+    /* Lighter */
+    margin-bottom: var(--bottom-nav-height);
+    width: 100%;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+    width: 25%;
+    padding: 10px 0;
+}
+
+.navItem svg {
+    margin-bottom: 4px;
+}
+
+.navItem.active {
+    color: var(--accent-primary);
+}
