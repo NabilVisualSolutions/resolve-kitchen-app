@@ -2,13 +2,20 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import { ArrowLeft, ArrowUp, ArrowDown, FileText } from 'lucide-react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 import styles from './LessonView.module.css';
+
+// Configure PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const LessonView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { lessons, completeLesson } = useUser();
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [numPages, setNumPages] = useState<number | null>(null);
 
     const lesson = lessons.find(l => l.id === Number(id));
 
@@ -45,10 +52,14 @@ const LessonView = () => {
 
     const showLessonImage = isFirstSlide && lesson.image;
 
-    // Use the PDF URL directly if it's a local file, otherwise use Google Docs Viewer for remote PDFs
+    // Use the PDF URL
     const pdfUrl = lesson.pdfUrl || "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf";
-    const isLocalPdf = pdfUrl.startsWith('/');
-    const pdfViewUrl = isLocalPdf ? `${pdfUrl}#page=${currentSlide + 1}` : `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+    // Map slide number to PDF page (starting from page 1)
+    const pdfPageNumber = Math.min(currentSlide + 1, numPages || 1);
+
+    const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+        setNumPages(numPages);
+    };
 
     return (
         <div className={styles.container}>
@@ -69,19 +80,38 @@ const LessonView = () => {
                         <img src={lesson.image} alt={lesson.title} className={styles.lessonImage} />
                     ) : (
                         <div className={styles.pdfFrame}>
-                            {/* Display PDF using appropriate method */}
+                            {/* Display PDF using react-pdf */}
                             {pdfUrl ? (
-                                <iframe
-                                    src={pdfViewUrl}
-                                    title="PDF Guide"
-                                    className={styles.pdfIframe}
-                                    frameBorder="0"
-                                />
+                                <Document
+                                    file={pdfUrl}
+                                    onLoadSuccess={onDocumentLoadSuccess}
+                                    loading={
+                                        <div className={styles.pdfPlaceholder}>
+                                            <FileText size={48} className={styles.pdfIcon} />
+                                            <h3>Loading PDF...</h3>
+                                        </div>
+                                    }
+                                    error={
+                                        <div className={styles.pdfPlaceholder}>
+                                            <FileText size={48} className={styles.pdfIcon} />
+                                            <h3>Failed to load PDF</h3>
+                                            <p>Please refresh the page</p>
+                                        </div>
+                                    }
+                                    className={styles.pdfDocument}
+                                >
+                                    <Page
+                                        pageNumber={pdfPageNumber}
+                                        width={750}
+                                        renderTextLayer={true}
+                                        renderAnnotationLayer={true}
+                                    />
+                                </Document>
                             ) : (
                                 <div className={styles.pdfPlaceholder}>
                                     <FileText size={48} className={styles.pdfIcon} />
                                     <h3>DaVinci Resolve PDF Guide</h3>
-                                    <p>Viewing Page {currentSlide + 1}</p>
+                                    <p>No PDF available</p>
                                 </div>
                             )}
                         </div>
@@ -102,6 +132,7 @@ const LessonView = () => {
 
                         <span className={styles.slideCounter}>
                             {currentSlide + 1} / {finalSlides.length}
+                            {numPages && !showLessonImage && ` (PDF: ${pdfPageNumber}/${numPages})`}
                         </span>
 
                         <button
