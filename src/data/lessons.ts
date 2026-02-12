@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Kitchen+Tour",
         pdfUrl: "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf",
-        pdfPages: [1, 5, 8, 12, 15, 20, 25, 30, 35], // Map each slide to specific PDF pages
+        pdfPages: [1, 8, 38, 1, 515, 193, 439, 565, 5], // Intro, Media, Cut, Edit, Fusion, Color, Fairlight, Deliver, Tips
         content: `
 # The Grand Tour
 
@@ -60,7 +60,7 @@ Service up! This is where you package the meal and send it out to the dining roo
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Media+Import",
         pdfUrl: "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf",
-        pdfPages: [40, 42, 45, 48, 50], // Importing Media, Bins, Backup
+        pdfPages: [2, 5, 8, 333, 40], // Importing, Relinking, Bins, Setup, Tip
         content: `
 # Reviewing Your Ingredients
 
@@ -88,7 +88,7 @@ Always backup your ingredients! The Clone Tool in the Media page is like creatin
         summary: "Everything in its place. Metadata and Smart Bins.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Mise+en+Place",
-        pdfPages: [52, 55, 58, 60], // Metadata, Smart Bins, Power Bins
+        pdfPages: [19, 10, 333], // Metadata, Smart Bins, Power Bins
         content: `
 # Mise en Place
 
@@ -114,7 +114,7 @@ These are your secret spice blends that travel with you between kitchens (Projec
         summary: "Speed chopping for the hungry customer.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Rough+Chop",
-        pdfPages: [70, 72, 75], // Dual Timeline, Source Tape
+        pdfPages: [1, 13, 16], // Rough Cut, Timeline, Soundbites
         content: `
 # The Chopping Block
 
@@ -138,7 +138,7 @@ Imagine unrolling all your ingredients on one long table. **Source Tape** mode l
         summary: "Throwing it in the pan. Smart Insert and Append.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Fast+Assembly",
-        pdfPages: [80, 82, 85, 88], // Smart Insert, Append, Ripple Overwrite
+        pdfPages: [38, 41, 44, 48], // Insert/Append, Pacing, Painting clips
         content: `
 # Cooking with Fire
 
@@ -162,6 +162,7 @@ The magic eraser. Don't like that shot? Replace it with another one of the exact
         summary: "Precision cooking. The traditional timeline.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Edit+Page",
+        pdfPages: [65, 1, 38], // Finessing, Edit Page, 3-Point Edit
         content: `
 # The Main Line
 
@@ -186,6 +187,7 @@ You define 3 points, and Resolve calculates the 4th. It's simple geometry, Chef.
         summary: "Fine-tuning cuts. Roll, Ripley, Slip, and Slide.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Trimming",
+        pdfPages: [65, 75, 80, 85], // Trimming, Roll, Slip, Slide
         content: `
 # Knife Skills (Trimming)
 
@@ -212,6 +214,7 @@ The precision knife.
         summary: "Cross dissolves and smooth cuts.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Transitions",
+        pdfPages: [139, 145, 150], // Transitions intro
         content: `
 # The Sauce Between Courses
 
@@ -234,6 +237,7 @@ Blending the flavors. Melting the cheese into the meat. Use this to suggest time
         summary: "Retime controls. Slow motion and speed ramps.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Speed+Ramps",
+        pdfPages: [155, 160, 165], // Speed changes
         content: `
 # Controlling Time
 
@@ -255,6 +259,7 @@ When slowing down 30fps footage, it looks choppy (like chunky soup). Turn on **O
         summary: "Adding text and visual overlays.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Titles",
+        pdfPages: [170, 175, 180], // Titles and Adjustment clips
         content: `
 # The Menu Cards
 
@@ -273,6 +278,7 @@ Think of this as a "glaze" over the entire dish. Put an adjustment clip specific
         summary: "Layering flavors. Serial and Parallel nodes.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Nodes",
+        pdfPages: [193, 200, 205], // Nodes intro
         content: `
 # The Flavor Profile
 
@@ -295,6 +301,7 @@ The signal flows from left to right. Whatever you do in Node 1 affects what Node
         summary: "Exposure, Contrast, and White Balance.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Primary+Correction",
+        pdfPages: [193, 195, 210, 215], // Primary basics, Scopes
         content: `
 # The Broth
 
@@ -314,6 +321,7 @@ Use the **Scopes** (Waveform/Parade)! Don't trust your eyes; they get tired. Tru
         summary: "Qualifiers. Picking a specific color.",
         level: "Hard",
         image: "https://placehold.co/600x400/ef4444/FFF?text=Qualifiers",
+        pdfPages: [251, 260, 265, 270], // Secondary, Qualifiers
         content: `
 # Picky Eaters
 
@@ -334,6 +342,7 @@ Sometimes you need to change *just* the red shirt, not the red sunset.
         summary: "Power Windows. Limiting effects to shapes.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Power+Windows",
+        pdfPages: [251, 275, 280], // Windows section
         content: `
 # The Spotlight
 
@@ -352,6 +361,7 @@ Combine Windows with Tracking. If the plate moves, the garnish stays with it!
         summary: "Cloud Tracker and Point Tracker.",
         level: "Hard",
         image: "https://placehold.co/600x400/ef4444/FFF?text=Tracking",
+        pdfPages: [285, 290, 295], // Tracking section
         content: `
 # Sticky Sauce
 
@@ -370,6 +380,7 @@ Resolve analyzes the movement and sticks the window to the face like glue. Magic
         summary: "Custom curves. Hue vs Hue, Hue vs Sat.",
         level: "Hard",
         image: "https://placehold.co/600x400/ef4444/FFF?text=Curves",
+        pdfPages: [251, 300, 305], // Curves section
         content: `
 # Precision Shaping
 
@@ -388,6 +399,7 @@ This is how you get that "Film Look" where skin tones are preserved but the back
         summary: "Using Look Up Tables.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=LUTs",
+        pdfPages: [310, 315, 320], // LUTs section
         content: `
 # Canned Sauces
 
@@ -406,6 +418,7 @@ This is how you get that "Film Look" where skin tones are preserved but the back
         summary: "Levels and Mixing.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Fairlight",
+        pdfPages: [439, 445, 450], // Fairlight intro, Mixer
         content: `
 # The Sound of Sizzle
 
@@ -424,6 +437,7 @@ Go to the **Fairlight Page**.
         summary: "Equalization. Removing mud.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=EQ",
+        pdfPages: [455, 460, 465], // EQ section
         content: `
 # Balancing the Palate
 
@@ -441,6 +455,7 @@ Go to the **Fairlight Page**.
         summary: "Smoothing out the volume.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Compressor",
+        pdfPages: [470, 475, 480], // Dynamics section
         content: `
 # Consistent Portions
 
@@ -461,6 +476,7 @@ Now, even if the actor whispers then screams, the audience doesn't need to reach
         summary: "Nodes in Fusion vs Color. Merge nodes.",
         level: "Hard",
         image: "https://placehold.co/600x400/ef4444/FFF?text=Fusion",
+        pdfPages: [515, 520, 525], // Fusion intro, Nodes, Merge
         content: `
 # The Science Lab
 
@@ -480,6 +496,7 @@ Everything flows together to create the final composite.
         summary: "Advanced titles and tracking text.",
         level: "Hard",
         image: "https://placehold.co/600x400/ef4444/FFF?text=Fusion+Text",
+        pdfPages: [530, 535, 540], // Fusion text section
         content: `
 # Molecular Text
 
@@ -498,6 +515,7 @@ Fusion text is 3D-aware.
         summary: "Editing the live show.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Multicam",
+        pdfPages: [550, 555, 560], // Multicam section
         content: `
 # The Live Kitchen
 
@@ -517,6 +535,7 @@ Cooking for a banquet with multiple stations?
         summary: "Sending it to the pass.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Export",
+        pdfPages: [565, 570, 575, 580], // Delivery section
         content: `
 # Service!
 
@@ -539,6 +558,7 @@ Ding! Order up.
         summary: "Managing the restaurant business.",
         level: "Intermediate",
         image: "https://placehold.co/600x400/a855f7/FFF?text=Database",
+        pdfPages: [333, 340, 350], // Projects, Setup, Database
         content: `
 # The Manager's Office
 
