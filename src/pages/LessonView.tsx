@@ -52,8 +52,8 @@ const LessonView = () => {
 
     const showLessonImage = isFirstSlide && lesson.image;
 
-    // Use the PDF URL
-    const pdfUrl = lesson.pdfUrl || "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf";
+    // Use the PDF URL - for GitHub Pages with HashRouter, use relative path from base
+    const pdfUrl = lesson.pdfUrl || `${import.meta.env.BASE_URL}DaVinci-Resolve-20_Beginners-Guide.pdf`;
     // Map slide number to PDF page (starting from page 1)
     const pdfPageNumber = Math.min(currentSlide + 1, numPages || 1);
 
