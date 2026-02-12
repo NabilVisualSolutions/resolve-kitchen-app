@@ -63,8 +63,20 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }, [user]);
 
     const login = (username: string, pass: string) => {
+        // Get stored user data to check credentials
+        const storedData = localStorage.getItem(USER_STORAGE_KEY);
+        let storedUser = user;
+
+        if (storedData) {
+            try {
+                storedUser = JSON.parse(storedData);
+            } catch (e) {
+                console.error("Failed to parse stored user", e);
+            }
+        }
+
         // Authenticate against stored user data OR hardcoded admin fallback
-        if ((username === user.username && pass === user.password) || (username === 'admin' && pass === 'password')) {
+        if ((username === storedUser.username && pass === storedUser.password) || (username === 'admin' && pass === 'password')) {
             setUser(prev => ({ ...prev, isAuthenticated: true }));
             return true;
         }
