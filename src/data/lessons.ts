@@ -10,6 +10,7 @@ export interface Lesson {
     level: Level;
     image: string;
     pdfUrl?: string; // Optional PDF link
+    pdfPages?: number[]; // Map each slide to a specific PDF page number
 }
 
 export const lessons: Lesson[] = [
@@ -20,6 +21,7 @@ export const lessons: Lesson[] = [
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Kitchen+Tour",
         pdfUrl: "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf",
+        pdfPages: [1, 5, 8, 12, 15, 20, 25, 30, 35], // Map each slide to specific PDF pages
         content: `
 # The Grand Tour
 

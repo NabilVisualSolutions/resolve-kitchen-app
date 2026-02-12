@@ -54,8 +54,11 @@ const LessonView = () => {
 
     // Use the PDF URL - for GitHub Pages with HashRouter, use relative path from base
     const pdfUrl = lesson.pdfUrl || `${import.meta.env.BASE_URL}DaVinci-Resolve-20_Beginners-Guide.pdf`;
-    // Map slide number to PDF page (starting from page 1)
-    const pdfPageNumber = Math.min(currentSlide + 1, numPages || 1);
+
+    // Map slide number to PDF page - use pdfPages array if available, otherwise increment
+    const pdfPageNumber = lesson.pdfPages && lesson.pdfPages[currentSlide]
+        ? lesson.pdfPages[currentSlide]
+        : Math.min(currentSlide + 1, numPages || 1);
 
     const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
         setNumPages(numPages);
