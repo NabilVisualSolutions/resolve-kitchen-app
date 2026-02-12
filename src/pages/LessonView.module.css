@@ -81,12 +81,19 @@
 
 .pdfFrame {
     width: 100%;
-    height: 350px;
+    height: 400px;
     background-color: #f1f5f9;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     overflow: hidden;
     position: relative;
+}
+
+.pdfIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 .pdfPlaceholder {
@@ -182,7 +189,9 @@
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
-    .pdfPlaceholder {
+
+    .pdfPlaceholder,
+    .pdfFrame {
         background-color: #1e293b;
         color: #94a3b8;
     }

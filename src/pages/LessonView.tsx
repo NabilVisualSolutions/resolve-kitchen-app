@@ -45,6 +45,16 @@ const LessonView = () => {
 
     const showLessonImage = isFirstSlide && lesson.image;
 
+    // Use Google Docs Viewer to display remote PDFs reliably
+    // This avoids CORS issues and blocking headers often present on direct PDF links (like GitHub raw)
+    const pdfUrl = lesson.pdfUrl || "https://raw.githubusercontent.com/mozilla/pdf.js/master/web/compressed.tracemonkey-pldi-09.pdf";
+    const googleDocsViewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+
+    // Note: Google Viewer doesn't support deep linking to pages reliably in embed mode, 
+    // so we just show the PDF generally. 
+    // If a specific page is needed, a dedicated library like react-pdf would be better, 
+    // but this iframe method is zero-dependency.
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -64,11 +74,21 @@ const LessonView = () => {
                         <img src={lesson.image} alt={lesson.title} className={styles.lessonImage} />
                     ) : (
                         <div className={styles.pdfFrame}>
-                            <div className={styles.pdfPlaceholder}>
-                                <FileText size={48} className={styles.pdfIcon} />
-                                <h3>DaVinci Resolve PDF Guide</h3>
-                                <p>Page {currentSlide + 5} Preview</p>
-                            </div>
+                            {/* Use Google Docs Viewer for reliable embedding */}
+                            {pdfUrl ? (
+                                <iframe
+                                    src={googleDocsViewerUrl}
+                                    title="PDF Guide"
+                                    className={styles.pdfIframe}
+                                    frameBorder="0"
+                                />
+                            ) : (
+                                <div className={styles.pdfPlaceholder}>
+                                    <FileText size={48} className={styles.pdfIcon} />
+                                    <h3>DaVinci Resolve PDF Guide</h3>
+                                    <p>Viewing Page {currentSlide + 1}</p>
+                                </div>
+                            )}
                         </div>
                     )}
 

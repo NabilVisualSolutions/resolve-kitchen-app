@@ -9,6 +9,7 @@ export interface Lesson {
     isCompleted: boolean;
     level: Level;
     image: string;
+    pdfUrl?: string; // Optional PDF link
 }
 
 export const lessons: Lesson[] = [
@@ -18,6 +19,7 @@ export const lessons: Lesson[] = [
         summary: "Welcome to your new kitchen! Let's learn where everything is kept.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Kitchen+Tour",
+        pdfUrl: "https://raw.githubusercontent.com/mozilla/pdf.js/master/web/compressed.tracemonkey-pldi-09.pdf", // Sample PDF
         content: `
 # The Grand Tour
 
@@ -55,6 +57,7 @@ Service up! This is where you package the meal and send it out to the dining roo
         summary: "Bringing your ingredients into the kitchen safely.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Media+Import",
+        pdfUrl: "https://raw.githubusercontent.com/mozilla/pdf.js/master/web/compressed.tracemonkey-pldi-09.pdf",
         content: `
 # Reviewing Your Ingredients
 

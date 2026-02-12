@@ -88,8 +88,6 @@ const Login = () => {
                     <button type="button" onClick={toggleMode} className={styles.toggleBtn}>
                         {isSignUp ? "Already have an account? Sign In" : "New here? Create an Account"}
                     </button>
-
-                    {!isSignUp && <p className={styles.hint}>Default: admin / kitchen</p>}
                 </form>
             </div>
         </div>

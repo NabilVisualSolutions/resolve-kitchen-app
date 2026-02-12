@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { lessons as initialLessons, type Lesson } from '../data/lessons';
 
 export interface User {
@@ -27,6 +27,8 @@ interface UserContextType {
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
+const USER_STORAGE_KEY = 'resolve_kitchen_user';
+
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const defaultUser: User = {
         name: "Joe Sallam",
@@ -39,12 +41,29 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         isAuthenticated: false
     };
 
-    const [user, setUser] = useState<User>(defaultUser);
+    // Initialize state from local storage or default
+    const [user, setUser] = useState<User>(() => {
+        const stored = localStorage.getItem(USER_STORAGE_KEY);
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse user data", e);
+                return defaultUser;
+            }
+        }
+        return defaultUser;
+    });
 
     const [lessons] = useState<Lesson[]>(initialLessons);
 
+    // Save to local storage whenever user changes
+    useEffect(() => {
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+    }, [user]);
+
     const login = (username: string, pass: string) => {
-        // Mock auth: check against current user state or hardcoded admin
+        // Authenticate against stored user data OR hardcoded admin fallback
         if ((username === user.username && pass === user.password) || (username === 'admin' && pass === 'password')) {
             setUser(prev => ({ ...prev, isAuthenticated: true }));
             return true;
@@ -53,7 +72,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const signup = (name: string, username: string, pass: string) => {
-        setUser({
+        const newUser = {
             name,
             email: "",
             username,
@@ -62,7 +81,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             xp: 0,
             completedLessons: [],
             isAuthenticated: true
-        });
+        };
+        setUser(newUser);
+        // Explicitly save immediately to avoid race conditions with unmounting/remounting
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(newUser));
     };
 
     const logout = () => {
