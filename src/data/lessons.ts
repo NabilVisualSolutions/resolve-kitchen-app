@@ -60,6 +60,7 @@ Service up! This is where you package the meal and send it out to the dining roo
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Media+Import",
         pdfUrl: "/resolve-kitchen-app/DaVinci-Resolve-20_Beginners-Guide.pdf",
+        pdfPages: [40, 42, 45, 48, 50], // Importing Media, Bins, Backup
         content: `
 # Reviewing Your Ingredients
 
@@ -87,6 +88,7 @@ Always backup your ingredients! The Clone Tool in the Media page is like creatin
         summary: "Everything in its place. Metadata and Smart Bins.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Mise+en+Place",
+        pdfPages: [52, 55, 58, 60], // Metadata, Smart Bins, Power Bins
         content: `
 # Mise en Place
 
@@ -112,6 +114,7 @@ These are your secret spice blends that travel with you between kitchens (Projec
         summary: "Speed chopping for the hungry customer.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Rough+Chop",
+        pdfPages: [70, 72, 75], // Dual Timeline, Source Tape
         content: `
 # The Chopping Block
 
@@ -135,6 +138,7 @@ Imagine unrolling all your ingredients on one long table. **Source Tape** mode l
         summary: "Throwing it in the pan. Smart Insert and Append.",
         level: "Beginner",
         image: "https://placehold.co/600x400/2563eb/FFF?text=Fast+Assembly",
+        pdfPages: [80, 82, 85, 88], // Smart Insert, Append, Ripple Overwrite
         content: `
 # Cooking with Fire
 

@@ -50,6 +50,9 @@ const LessonView = () => {
         ? lesson.pdfPages[currentSlide]
         : currentSlide + 1;
 
+    // PDF URL - Ensure it points to the correct location
+    const pdfUrl = lesson.pdfUrl || `${import.meta.env.BASE_URL}DaVinci-Resolve-20_Beginners-Guide.pdf`;
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -64,18 +67,22 @@ const LessonView = () => {
             <div className={styles.slideContainer}>
                 <div className={styles.slideContent}>
 
-                    {/* Visual Area: Either Lesson Image (1st slide) or PDF Reference */}
+                    {/* Visual Area: Either Lesson Image (1st slide) or PDF Guide Preview */}
                     {showLessonImage ? (
                         <img src={lesson.image} alt={lesson.title} className={styles.lessonImage} />
                     ) : (
-                        <div className={styles.pdfReference}>
-                            <FileText size={64} className={styles.pdfIcon} />
-                            <h3>📖 DaVinci Resolve Beginner's Guide</h3>
-                            <div className={styles.pageReference}>
-                                <p className={styles.referenceText}>For more details, see:</p>
-                                <p className={styles.pageNumber}>Page {pdfPageNumber}</p>
+                        <div className={styles.previewContainer}>
+                            <div className={styles.pageIndicator}>
+                                <FileText size={16} />
+                                <span>Guide: Page {pdfPageNumber}</span>
                             </div>
-                            <p className={styles.hint}>Open the PDF guide to follow along</p>
+                            <div className={styles.pdfFrame}>
+                                <iframe
+                                    src={`${pdfUrl}#page=${pdfPageNumber}&view=FitH`}
+                                    title="PDF Guide"
+                                    className={styles.pdfIframe}
+                                />
+                            </div>
                         </div>
                     )}
 
